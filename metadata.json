@@ -1,0 +1,8 @@
+{
+  "name": "Remix Remix: Remix: Koperasi Santri",
+  "description": "Sistem Manajemen Koperasi dan Tabungan Santri Pondok Pesantren - Transaksi, Top-Up Saldo, Laporan PDF/Excel \u0026 Statistik Realtime",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}

@@ -1,0 +1,141 @@
+{
+  "entities": {
+    "students": {
+      "title": "Students",
+      "description": "Santri accounts and balances",
+      "properties": {
+        "id": { "type": "string" },
+        "nis": { "type": "string" },
+        "name": { "type": "string" },
+        "class_name": { "type": "string" },
+        "gender": { "type": "string" },
+        "room_number": { "type": "string" },
+        "balance": { "type": "number" },
+        "status": { "type": "string" },
+        "parent_phone": { "type": "string" },
+        "photo_url": { "type": "string" },
+        "created_at": { "type": "string" },
+        "updated_at": { "type": "string" }
+      },
+      "required": ["nis", "name", "balance"]
+    },
+    "transactions": {
+      "title": "Transactions",
+      "description": "Jajan transaction records",
+      "properties": {
+        "id": { "type": "string" },
+        "transaction_code": { "type": "string" },
+        "student_id": { "type": "string" },
+        "student_nis": { "type": "string" },
+        "student_name": { "type": "string" },
+        "amount": { "type": "number" },
+        "category": { "type": "string" },
+        "note": { "type": "string" },
+        "created_at": { "type": "string" },
+        "created_by": { "type": "string" }
+      },
+      "required": ["transaction_code", "student_id", "amount"]
+    },
+    "topups": {
+      "title": "Topups",
+      "description": "Balance top-up records",
+      "properties": {
+        "id": { "type": "string" },
+        "topup_code": { "type": "string" },
+        "student_id": { "type": "string" },
+        "student_nis": { "type": "string" },
+        "student_name": { "type": "string" },
+        "amount": { "type": "number" },
+        "payment_method": { "type": "string" },
+        "note": { "type": "string" },
+        "created_at": { "type": "string" },
+        "created_by": { "type": "string" }
+      },
+      "required": ["topup_code", "student_id", "amount"]
+    },
+    "settings": {
+      "title": "Settings",
+      "description": "Application settings",
+      "properties": {
+        "id": { "type": "string" },
+        "key": { "type": "string" },
+        "value": { "type": "object" },
+        "updated_at": { "type": "string" }
+      },
+      "required": ["key"]
+    },
+    "admin_users": {
+      "title": "Admin Users",
+      "description": "Koperasi administrator accounts",
+      "properties": {
+        "id": { "type": "string" },
+        "name": { "type": "string" },
+        "email": { "type": "string" },
+        "role": { "type": "string" },
+        "avatar_url": { "type": "string" },
+        "created_at": { "type": "string" }
+      },
+      "required": ["email"]
+    },
+    "activity_logs": {
+      "title": "Activity Logs",
+      "description": "System activity audit logs",
+      "properties": {
+        "id": { "type": "string" },
+        "user_name": { "type": "string" },
+        "action": { "type": "string" },
+        "details": { "type": "string" },
+        "timestamp": { "type": "string" }
+      },
+      "required": ["action", "timestamp"]
+    },
+    "daily_summaries": {
+      "title": "Daily Summaries",
+      "description": "Automated daily transaction and topup report summaries",
+      "properties": {
+        "id": { "type": "string" },
+        "report_date": { "type": "string" },
+        "total_transactions_count": { "type": "number" },
+        "total_transactions_amount": { "type": "number" },
+        "total_topups_count": { "type": "number" },
+        "total_topups_amount": { "type": "number" },
+        "net_cash_flow": { "type": "number" },
+        "sent_to_email": { "type": "string" },
+        "status": { "type": "string" },
+        "trigger_type": { "type": "string" },
+        "generated_at": { "type": "string" }
+      },
+      "required": ["report_date", "sent_to_email", "status"]
+    }
+  },
+  "firestore": {
+    "/students/{studentId}": {
+      "schema": { "$ref": "#/entities/students" },
+      "description": "Santri accounts collection"
+    },
+    "/transactions/{transactionId}": {
+      "schema": { "$ref": "#/entities/transactions" },
+      "description": "Jajan transactions collection"
+    },
+    "/topups/{topupId}": {
+      "schema": { "$ref": "#/entities/topups" },
+      "description": "Balance topups collection"
+    },
+    "/settings/{settingId}": {
+      "schema": { "$ref": "#/entities/settings" },
+      "description": "Settings collection"
+    },
+    "/admin_users/{adminId}": {
+      "schema": { "$ref": "#/entities/admin_users" },
+      "description": "Admin users collection"
+    },
+    "/activity_logs/{logId}": {
+      "schema": { "$ref": "#/entities/activity_logs" },
+      "description": "Activity audit logs"
+    },
+    "/daily_summaries/{summaryId}": {
+      "schema": { "$ref": "#/entities/daily_summaries" },
+      "description": "Daily automated summary reports"
+    }
+  }
+}
